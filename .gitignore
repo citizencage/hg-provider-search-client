@@ -1,0 +1,8 @@
+# NODE #
+##########
+node_modules
+package-lock.json
+
+# MISC #
+##########
+.idea
