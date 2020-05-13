@@ -95,6 +95,12 @@ module.exports = merge(common, {
             inject: true,
             chunks: ['index'],
             filename: 'provider-search-demo.html'
+        }),
+        new HtmlWebpackPlugin({
+            template: './src/provider-search-load-demo.html',
+            inject: true,
+            chunks: ['index'],
+            filename: 'provider-search-load-demo.html'
         })
     ]
 

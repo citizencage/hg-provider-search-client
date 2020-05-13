@@ -14,3 +14,19 @@ export const GET_PROVIDERS_BY_SIMPLE_QUERY = gql`
         }
     }   
 `;
+
+export const GET_PROVIDERS_QUERY_SEARCH_AFTER = gql`
+    query getProvidersQuerySearchAfter($searchQuery: String!, $size: Int!, $searchAfter: [String]) {
+        getProvidersQuerySearchAfter(searchQuery: $searchQuery, size: $size, searchAfter: $searchAfter) {
+            total
+            providers {
+                last_name
+                title
+                npi_number
+                gender
+                rating
+                education
+            }
+        }
+    }   
+`;

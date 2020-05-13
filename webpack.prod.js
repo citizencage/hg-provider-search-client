@@ -78,6 +78,12 @@ module.exports = merge(common, {
             chunks: ['index'],
             filename: 'provider-search-demo.html'
         }),
+        new HtmlWebpackPlugin({
+            template: './src/provider-search-load-demo.html',
+            inject: true,
+            chunks: ['index'],
+            filename: 'provider-search-load-demo.html'
+        }),
         new MiniCssExtractPlugin({
             filename: '[name].[contenthash].css',
             chunkFilename: '[id].[contenthash].css'

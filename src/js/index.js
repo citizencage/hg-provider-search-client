@@ -8,6 +8,7 @@ import utilities from './utilities';
 import BasicRatings from 'Components/basicratings';
 import FilteredRatings from 'Components/filteredratings';
 import ProviderSearch from 'Components/providersearch';
+import ProviderSearchLoad from 'Components/providersearchload';
 
 utilities.elementReady('#basicRatingsApp').then( () => {
     BasicRatings('#basicRatingsApp');
@@ -19,4 +20,8 @@ utilities.elementReady('#filteredRatingsApp').then( () => {
 
 utilities.elementReady('#providerSearchApp').then( () => {
     ProviderSearch('#providerSearchApp');
+});
+
+utilities.elementReady('#providerSearchLoadApp').then( () => {
+    ProviderSearchLoad('#providerSearchLoadApp');
 });
