@@ -11,25 +11,44 @@
         </div>
 
 
-
-        <div class="row">
-            <div class="col-md-8 results-list">
-                <div v-if="$apollo.queries.getProvidersQuerySearchAfter.loading">Loading . . .</div>
-                <div v-if="error">{{ error }}</div>
-                <transition name="fade">
-                    <ul class="list-group" v-if="results.length > 0">
-                        <li class="list-group-item" v-for="(item, index) in results" :id="item.npi_number" v-bind:key="item.npi_number">
-                            {{item.title}}<br>
-                            <strong>{{item.npi_number}}</strong><br>
-                            <em>Gender: {{item.gender}}</em><br>
-                            <em>Rating: {{item.rating}}</em><br><br>
-                            <em>{{item.education}}</em>
-                        </li>
-
-                    </ul>
-                </transition>
-            </div>
+        <div class="results-wrapper">
+            <div class="loading" v-if="$apollo.queries.getProvidersQuerySearchAfter.loading"></div>
+            <div v-if="error">{{ error }}</div>
+            <div class="results" v-if="results.length > 0">
+            <transition-group name="search-item-wrapper" tag="div" class="search-inner">
+                <div class="search-item-wrapper" v-for="(item, index) in results" :id="item.npi_number" v-bind:key="item.npi_number">
+                    <div class="row">
+                        <div class="col-md-2 avatar"><img src="images/avatar.png" /></div>
+                        <div class="col-md-10 details">
+                            <div class="title">{{item.title}}</div>
+                            <div class="meta">Gender: <strong>{{item.gender}}</strong> Rating: <strong>{{item.rating}}</strong></div>
+                            <div class="education">{{item.education}}</div>
+                        </div>
+                    </div>
+                </div>
+            </transition-group>
+            </div><!-- results -->
         </div>
+
+
+        <!--<div class="row">-->
+            <!--<div class="col-md-8 results-list">-->
+                <!--<div v-if="$apollo.queries.getProvidersQuerySearchAfter.loading">Loading . . .</div>-->
+                <!--<div v-if="error">{{ error }}</div>-->
+                <!--<transition name="fade">-->
+                    <!--<ul class="list-group" v-if="results.length > 0">-->
+                        <!--<li class="list-group-item" v-for="(item, index) in results" :id="item.npi_number" v-bind:key="item.npi_number">-->
+                            <!--{{item.title}}<br>-->
+                            <!--<strong>{{item.npi_number}}</strong><br>-->
+                            <!--<em>Gender: {{item.gender}}</em><br>-->
+                            <!--<em>Rating: {{item.rating}}</em><br><br>-->
+                            <!--<em>{{item.education}}</em>-->
+                        <!--</li>-->
+
+                    <!--</ul>-->
+                <!--</transition>-->
+            <!--</div>-->
+        <!--</div>-->
 
         <div class="row">
             <div class="col-md-8" style="margin: 25px auto; text-align: center;">
@@ -86,7 +105,7 @@
                                 ['title']: element.title,
                                 ['npi_number']: element.npi_number,
                                 ['gender']: element.gender,
-                                ['rating']: element.rating,
+                                ['rating']: (element.rating === null) ? 'NA' : element.rating,
                                 ['education']: element.education
                             }
                         );

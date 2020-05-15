@@ -14,3 +14,137 @@ body {
     }
   }
 }
+
+$max-width: 1300px;
+$desktop: 1025px;
+$tablet: 768px;
+$mobile: 551px;
+
+.container {
+  max-width: $max-width;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(359deg);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(50%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.loading {
+  width: 36px;
+  height: 36px;
+  margin: 30px auto;
+  transform: rotate(0deg);
+  animation: spin .6s infinite linear;
+  border: 4px solid #f6f2fc;
+  border-top: 4px solid #007bff;
+  border-radius: 50%;
+  stroke: white;
+
+  @media(max-width: $mobile) {
+    width: 24px;
+    height: 24px;
+    border: 2px solid #f6f2fc;
+    border-top: 2px solid #007bff;
+  }
+}
+
+.results-wrapper {
+  margin: 0 auto;
+  max-width: $max-width;
+}
+
+.search-inner {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 0 100px 0;
+
+  .search-item-wrapper {
+    position: relative;
+    display: flex;
+    width: calc(100% - 1em);
+    height: 200px;
+    margin: 16px auto;
+    padding: 15px;
+    transition: all 0.25s;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.25);
+    background-color: #FFFFFF;
+    overflow: hidden;
+    flex-direction: column;
+
+    &:hover {
+      width: calc(100% - 5em);
+    }
+
+    //animations
+    &-move { transition: all 600ms ease-in-out 50ms }
+    &-enter-active { transition: all 300ms ease-out }
+
+    &-leave-active {
+      transition: all 200ms ease-in;
+      position: absolute;
+      z-index: 0;
+    }
+
+    &-enter,
+    &-leave-to { opacity: 0 }
+    &-enter { transform: scale(0.9) }
+    //animations
+
+    .avatar {
+      height: 174px;
+      img {
+       width: auto;
+        height: inherit;
+      }
+    }
+
+    .details {
+      .title {
+        transition: color 250ms;
+        font-size: 1.35rem;
+      }
+
+      .meta {
+        font-size: 1rem;
+        color: #777777;
+      }
+
+      .education {
+        font-size: 0.9em;
+        font-style: italic;
+        margin: 10px 0;
+      }
+
+      &:hover {
+        .title {
+          color: #007bff;
+        }
+      }
+    }
+  }
+}
